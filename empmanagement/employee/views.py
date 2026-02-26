@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='/')
 def dashboard(request):
-    info = Employee.objects.filter(eID=request.user.username)
-    return render(request,"employee/index.html",{'info':info})
+    employee = Employee.objects.get(eID=request.user.username)
+    return render(request, "employee/dashboard.html", {'employee': employee})
     
 @login_required(login_url='/')
 def attendance(request):

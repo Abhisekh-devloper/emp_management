@@ -1,10 +1,71 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<style>
+    /* 🔹 Minimize details text */
+    .home .table td {
+        font-size: 13px;   /* 👈 smaller details text */
+    }
+
+    /* 🔹 Keep labels slightly bold & readable */
+    .home .table td b {
+        font-size: 14px;
+    }
+
+    /* 🔹 Optional: slightly reduce heading */
+    .home h2 {
+        font-size: 22px;
+    }
+</style>
+
 <section class="home">
     <div class="text">
-        Dashboard
-        
+        <h2>Hello, {{ employee.firstName }} {{ employee.lastName }}</h2>
+
+        <table class="table">
+            <tr>
+                <td><b>Employee ID:</b></td>
+                <td>{{ employee.eID }}</td>
+            </tr>
+            <tr>
+                <td><b>First Name:</b></td>
+                <td>{{ employee.firstName }}</td>
+            </tr>
+            <tr>
+                <td><b>Middle Name:</b></td>
+                <td>{{ employee.middleName }}</td>
+            </tr>
+            <tr>
+                <td><b>Last Name:</b></td>
+                <td>{{ employee.lastName }}</td>
+            </tr>
+            <tr>
+                <td><b>Phone:</b></td>
+                <td>{{ employee.phoneNo }}</td>
+            </tr>
+            <tr>
+                <td><b>Email:</b></td>
+                <td>{{ employee.email }}</td>
+            </tr>
+            <tr>
+                <td><b>Date of Birth:</b></td>
+                <td>{{ employee.dOB }}</td>
+            </tr>
+            <tr>
+                <td><b>Aadhar:</b></td>
+                <td>{{ employee.addharNo }}</td>
+            </tr>
+            <tr>
+                <td><b>Designation:</b></td>
+                <td>{{ employee.designation }}</td>
+            </tr>
+            <tr>
+                <td><b>Salary:</b></td>
+                <td>{{ employee.salary }}</td>
+            </tr>
+        </table>
     </div>
 </section>
+
 {% endblock %}

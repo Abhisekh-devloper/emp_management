@@ -267,13 +267,12 @@ body.dark .switch::before{
 .home{
     position: absolute;
     top: 0;
-    top: 0;
     left: 250px;
-    height: 100vh;
+    min-height: 100vh;   /* ✅ change from height */
     width: calc(100% - 250px);
-    background-color: var(--body-color);
-    transition: var(--tran-05);
+    padding: 30px;       /* ⭐ add this (important) */
 }
+
 .home .text{
     font-size: 30px;
     font-weight: 500;
@@ -285,4 +284,13 @@ body.dark .switch::before{
 
 body.dark .home .text{
     color: var(--text-color);
+}
+
+.card, .works, .work-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+.work-item {
+    overflow: hidden;
 }
