@@ -1,4 +1,4 @@
-# Employee Management System - Django(Python)
+# Smart employee management syytem with workforce analytics - Django(Python)
 
 Employee Management System built in a Python Framework Django and PostgreSQL as Database. This webapp include the functionality like...
 
@@ -44,19 +44,27 @@ Employee Management System built in a Python Framework Django and PostgreSQL as 
 ## Screenshots
 
 Login
-![Login](https://github.com/omjogani/employee-management-django/blob/master/screenshots/Login.png "Login")
+![Login](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/Login.png?raw=true "Login")
+
+Signup
+![Signup](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/signup.png?raw=true "Signup")
 
 Dashboard
-![Dashboard](https://github.com/omjogani/employee-management-django/blob/master/screenshots/Dashboard.png?raw=true "Dashboard")
+![Dashboard](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/Dashboard.png?raw=true "Dashboard")
 
 Assign Work
-![Assign Work](https://github.com/omjogani/employee-management-django/blob/master/screenshots/Assign%20Work.png?raw=true "Assign Work")
+![Assign Work](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/assign_work.png?raw=true "Assign Work")
 
 Notice
-![Notice](https://github.com/omjogani/employee-management-django/blob/master/screenshots/Notice.png?raw=true "Notice")
+![Notice](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/Notice.png?raw=true "Notice")
+
+Request
+![Request](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/Make%20Request.png?raw=true "Request")
 
 Admin (Manage Employee)
-![Admin (Manage Employee)](https://github.com/omjogani/employee-management-django/blob/master/screenshots/Admin%20Employee.png?raw=true "Admin (Manage Employee)")
+![Admin (Manage Employee)](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/admin%20dashboard.png?raw=true "Admin (Manage Employee)")
+
+
 
 ### Check out more Screenshots in Screenshot Folder...
 
