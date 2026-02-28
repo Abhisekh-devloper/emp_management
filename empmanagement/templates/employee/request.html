@@ -1,75 +1,71 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="home">
-    <div class="text">
-        Make Request
-        
-        <div class="flex flex-col">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-hidden">
-                  <table class="min-w-full ">
-                    <thead class="bg-white border-b">
-                      <tr>
-                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                          <div class="text" style="font-size: 18px; padding:5px 0px; color:black;">Enter Details Here.</div>
-                        </th>
-                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                          <a href="/ems/viewRequest">  <input type="submit" style="height:45px; width:200px; border-radius: 20px; background-color: #6366f1; color:white;" value="View Your Requests"></a>
-                        </th>
-                      </tr>
-                    </thead>
-                    <form method="post">
-                      {% csrf_token %}
-                    <tbody>
-                      <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                            Request to Employee ID
-                        </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                          <div hidden>{{requestForm.requesterId}}</div>
-                            {{requestForm.destinationEmployeeId}}
-                        </td>
-                      </tr>
-                        <!-- Employee First Name -->
-                      <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                          Write Request Message
-                        </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                          <div style="border: 1px solid black; width: min-content; height: min-content;">{{requestForm.requestMessage}}</div>
-                        </td>
-                      </tr>
-                      <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                          Select Request Date
-                        </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                            {{requestForm.requestDate}}
-                        </td>
-                      </tr>
-                      
-                      <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                          
-                        </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                            <input type="submit" style="height:45px; width:150px; border-radius: 20px; background-color: #6366f1; color:white;" value="Submit">
-                        </td>
-                      </tr>
-                    </tbody>
-                  </form>
-                  </table>
-                </div>
-              </div>
+<section class="home p-6 bg-gray-100 min-h-screen">
+
+    <div class="text-center mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-purple-700">
+            📝 Make Request
+        </h1>
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-lg shadow-md p-6 overflow-x-auto">
+
+            <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-semibold text-gray-900">Enter Details Here</div>
+                <a href="/ems/viewRequest">
+                    <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-300 shadow-sm">
+                        View Your Requests
+                    </button>
+                </a>
             </div>
-          </div>
+
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+
+                <!-- Request to Employee ID -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gray-50 hover:bg-gray-100 p-3 rounded transition duration-200">
+                    <span class="font-medium text-gray-800 w-full sm:w-1/3">Request to Employee ID</span>
+                    <div class="w-full sm:w-2/3">
+                        <div hidden>{{ requestForm.requesterId }}</div>
+                        {{ requestForm.destinationEmployeeId }}
+                    </div>
+                </div>
+
+                <!-- Request Message -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gray-50 hover:bg-gray-100 p-3 rounded transition duration-200">
+                    <span class="font-medium text-gray-800 w-full sm:w-1/3">Write Request Message</span>
+                    <div class="w-full sm:w-2/3">
+                        {{ requestForm.requestMessage }}
+                    </div>
+                </div>
+
+                <!-- Request Date -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gray-50 hover:bg-gray-100 p-3 rounded transition duration-200">
+                    <span class="font-medium text-gray-800 w-full sm:w-1/3">Select Request Date</span>
+                    <div class="w-full sm:w-2/3">
+                        {{ requestForm.requestDate }}
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-end">
+                    <button type="submit"
+                        class="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-300 shadow-sm">
+                        Submit
+                    </button>
+                </div>
+
+            </form>
         </div>
-        {% if flag != "" %}
-        <script>
-          alert('{{ flag }}');
-        </script>
-        {% endif %}
+    </div>
+
+    {% if flag != "" %}
+    <script>
+        alert('{{ flag }}');
+    </script>
+    {% endif %}
+
 </section>
 {% endblock %}

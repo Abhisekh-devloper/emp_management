@@ -1,47 +1,62 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="home">
-    <div class="text">
-        Your Attendance
-            <form  method="post">
-                {% csrf_token %}
-                <div class="flex flex-col">
-                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="overflow-hidden">
-                          <table class="min-w-full ">
-                            <thead class="bg-white border-b">
-                              <tr>
-                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                  <div class="text" style="font-size: 18px; padding:5px 0px; color:black;">Month</div>
-                                </th>
-                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                    <div class="text" style="font-size: 18px; padding:5px 0px; color:black;">Days</div>
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                {% for info in info %}
-                                <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{info.month}}
-                                    </td>
-                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{info.days}}
-                                    </td>
-                                  </tr>
-                                
-                                 {% endfor %}
-                              
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                    
-            </form>     
+<section class="p-10">
+
+
+
+    <div class="max-w-4xl mx-auto">
+
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+
+            <!-- Table Header -->
+            <div class="bg-purple-600 text-white px-6 py-4">
+                <h2 class="text-lg font-semibold">Monthly Attendance Record</h2>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-left">
+
+                    <thead class="bg-purple-100">
+                        <tr>
+                            <th class="px-6 py-3 text-purple-800 font-semibold">
+                                Month
+                            </th>
+                            <th class="px-6 py-3 text-purple-800 font-semibold">
+                                Days Present
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for info in info %}
+                        <tr class="border-b transition duration-300 hover:bg-purple-50 hover:scale-[1.01]">
+
+                            <td class="px-6 py-4 font-medium text-gray-700">
+                                {{ info.month }}
+                            </td>
+
+                            <td class="px-6 py-4 text-gray-600">
+                                {{ info.days }}
+                            </td>
+
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="2" class="px-6 py-4 text-center text-gray-500">
+                                No attendance records found.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 {% endblock %}

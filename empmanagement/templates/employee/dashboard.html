@@ -1,71 +1,143 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <style>
-    /* 🔹 Minimize details text */
-    .home .table td {
-        font-size: 13px;   /* 👈 smaller details text */
+    body {
+        background: linear-gradient(135deg, #42275a, #734b6d);
     }
 
-    /* 🔹 Keep labels slightly bold & readable */
-    .home .table td b {
+    .home {
+        padding: 40px;
+        color: white;
+    }
+
+    /* Greeting */
+    .welcome-text {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        color: #5e3468;
+    }
+
+    /* Profile Card */
+    .profile-card {
+        background: rgba(88, 28, 135, 0.35);
+        backdrop-filter: blur(15px);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        transition: 0.3s ease;
+    }
+
+    .profile-card:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Grid Layout */
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    /* Individual Info Box */
+    .info-box {
+        background: rgba(168, 85, 247, 0.25);
+        padding: 15px 20px;
+        border-radius: 12px;
+        transition: 0.3s ease;
         font-size: 14px;
     }
 
-    /* 🔹 Optional: slightly reduce heading */
-    .home h2 {
-        font-size: 22px;
+    .info-box:hover {
+        background: rgba(168, 85, 247, 0.45);
+        transform: scale(1.05);
+    }
+
+    .info-box span {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 13px;
+        color: #e9d5ff;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+        .home {
+            padding: 20px;
+        }
     }
 </style>
 
 <section class="home">
-    <div class="text">
-        <h2>Hello, {{ employee.firstName }} {{ employee.lastName }}</h2>
 
-        <table class="table">
-            <tr>
-                <td><b>Employee ID:</b></td>
-                <td>{{ employee.eID }}</td>
-            </tr>
-            <tr>
-                <td><b>First Name:</b></td>
-                <td>{{ employee.firstName }}</td>
-            </tr>
-            <tr>
-                <td><b>Middle Name:</b></td>
-                <td>{{ employee.middleName }}</td>
-            </tr>
-            <tr>
-                <td><b>Last Name:</b></td>
-                <td>{{ employee.lastName }}</td>
-            </tr>
-            <tr>
-                <td><b>Phone:</b></td>
-                <td>{{ employee.phoneNo }}</td>
-            </tr>
-            <tr>
-                <td><b>Email:</b></td>
-                <td>{{ employee.email }}</td>
-            </tr>
-            <tr>
-                <td><b>Date of Birth:</b></td>
-                <td>{{ employee.dOB }}</td>
-            </tr>
-            <tr>
-                <td><b>Aadhar:</b></td>
-                <td>{{ employee.addharNo }}</td>
-            </tr>
-            <tr>
-                <td><b>Designation:</b></td>
-                <td>{{ employee.designation }}</td>
-            </tr>
-            <tr>
-                <td><b>Salary:</b></td>
-                <td>{{ employee.salary }}</td>
-            </tr>
-        </table>
+    <div class="welcome-text">
+        👋 Hello, {{ employee.firstName }} {{ employee.lastName }}
     </div>
+
+    <div class="profile-card">
+
+        <!-- Info Grid -->
+        <div class="info-grid">
+
+            <div class="info-box">
+                <span>Employee ID</span>
+                {{ employee.eID }}
+            </div>
+
+            <div class="info-box">
+                <span>First Name</span>
+                {{ employee.firstName }}
+            </div>
+
+            <div class="info-box">
+                <span>Middle Name</span>
+                {{ employee.middleName }}
+            </div>
+
+            <div class="info-box">
+                <span>Last Name</span>
+                {{ employee.lastName }}
+            </div>
+
+            <div class="info-box">
+                <span>Phone</span>
+                {{ employee.phoneNo }}
+            </div>
+
+            <div class="info-box">
+                <span>Email</span>
+                {{ employee.email }}
+            </div>
+
+            <div class="info-box">
+                <span>Date of Birth</span>
+                {{ employee.dOB }}
+            </div>
+
+            <div class="info-box">
+                <span>Aadhar</span>
+                {{ employee.addharNo }}
+            </div>
+
+            <div class="info-box">
+                <span>Designation</span>
+                {{ employee.designation }}
+            </div>
+
+            <div class="info-box">
+                <span>Salary</span>
+                ₹ {{ employee.salary }}
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
 {% endblock %}

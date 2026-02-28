@@ -1,74 +1,56 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="home">
-    <div class="text">
-        Notice Details
-    <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-                <table class="min-w-full">
-                <thead class="bg-white border-b">
+<section class="home p-6 bg-gray-100 min-h-screen">
+
+    <div class="text-center mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-purple-700">
+            📌 Work Details
+        </h1>
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+
+            <table class="min-w-full">
+                <thead class="bg-purple-100">
                     <tr>
-                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                        <div class="text" style="font-size: 18px; padding:5px 0px; color:black;">Notice Info</div>
-                    </th>
-                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                    </th>
+                        <th class="text-left text-gray-900 px-6 py-3 text-lg font-semibold">Notice Info</th>
+                        <th class="text-left text-gray-900 px-6 py-3"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        Assigned by
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {{workdetails.assignerId}}
-                    </td>
+                <tbody class="divide-y divide-gray-200">
+
+                    <tr class="hover:bg-purple-50 transition duration-200">
+                        <td class="px-6 py-4 font-medium text-gray-800">Assigned By</td>
+                        <td class="px-6 py-4 text-gray-700">{{ workdetails.assignerId }}</td>
                     </tr>
-                    <!-- Employee First Name -->
-                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        Assigned to
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {{workdetails.taskerId}}
-                    </td>
+
+                    <tr class="hover:bg-purple-50 transition duration-200">
+                        <td class="px-6 py-4 font-medium text-gray-800">Assigned To</td>
+                        <td class="px-6 py-4 text-gray-700">{{ workdetails.taskerId }}</td>
                     </tr>
-                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        Work Description
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {{workdetails.work}}
-                    </td>
+
+                    <tr class="hover:bg-purple-50 transition duration-200">
+                        <td class="px-6 py-4 font-medium text-gray-800">Work Description</td>
+                        <td class="px-6 py-4 text-gray-700">{{ workdetails.work }}</td>
                     </tr>
-                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        Assigned Date
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {{workdetails.assignDate}}
-                    </td>
+
+                    <tr class="hover:bg-purple-50 transition duration-200">
+                        <td class="px-6 py-4 font-medium text-gray-800">Assigned Date</td>
+                        <td class="px-6 py-4 text-gray-700">{{ workdetails.assignDate }}</td>
                     </tr>
-                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        Due Date
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {{workdetails.dueDate}}
-                    </td>
+
+                    <tr class="hover:bg-purple-50 transition duration-200">
+                        <td class="px-6 py-4 font-medium text-gray-800">Due Date</td>
+                        <td class="px-6 py-4 text-gray-700">{{ workdetails.dueDate }}</td>
                     </tr>
-                    
+
                 </tbody>
-                </table>
-            </div>
-            </div>
-        </div>
+            </table>
+
         </div>
     </div>
-    
-    
+
 </section>
 {% endblock %}

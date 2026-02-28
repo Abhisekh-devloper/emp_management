@@ -1,5 +1,6 @@
 /* Google Font Import - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -8,25 +9,30 @@
 }
 
 :root{
-    /* ===== Colors ===== */
-    --body-color: #E4E9F7;
-    --sidebar-color: #FFF;
+    --sidebar-color: rgba(255,255,255,0.8);
     --primary-color: #695CFE;
-    --primary-color-light: #F6F5FF;
+    --primary-color-light: rgba(105,92,254,0.1);
     --toggle-color: #DDD;
-    --text-color: #707070;
+    --text-color: #333;
 
-    /* ====== Transition ====== */
-    --tran-03: all 0.2s ease;
     --tran-03: all 0.3s ease;
-    --tran-04: all 0.3s ease;
-    --tran-05: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
 }
 
+/* ===== Animated Gradient Background ===== */
 body{
     min-height: 100vh;
-    background-color: var(--body-color);
+    background: linear-gradient(-45deg, #667eea, #764ba2, #6a11cb, #2575fc);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
     transition: var(--tran-05);
+}
+
+@keyframes gradientMove {
+    0%{background-position: 0% 50%;}
+    50%{background-position: 100% 50%;}
+    100%{background-position: 0% 50%;}
 }
 
 ::selection{
@@ -34,32 +40,32 @@ body{
     color: #fff;
 }
 
+/* ===== Dark Mode ===== */
 body.dark{
-    --body-color: #18191a;
-    --sidebar-color: #242526;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    --sidebar-color: rgba(36,37,38,0.9);
     --primary-color: #3a3b3c;
-    --primary-color-light: #3a3b3c;
+    --primary-color-light: rgba(255,255,255,0.05);
     --toggle-color: #fff;
-    --text-color: #ccc;
+    --text-color: #f1f1f1;
 }
 
 /* ===== Sidebar ===== */
- .sidebar{
+.sidebar{
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 250px;
-    padding: 10px 14px;
+    padding: 15px;
+    backdrop-filter: blur(15px);
     background: var(--sidebar-color);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     transition: var(--tran-05);
-    z-index: 100;  
+    z-index: 100;
+    border-right: 1px solid rgba(255,255,255,0.2);
 }
-/* .sidebar.close{
-    width: 88px;
-} */
 
-/* ===== Reusable code - Here ===== */
 .sidebar li{
     height: 50px;
     list-style: none;
@@ -68,91 +74,47 @@ body.dark{
     margin-top: 10px;
 }
 
-.sidebar header .image,
 .sidebar .icon{
     min-width: 60px;
-    border-radius: 6px;
-}
-
-.sidebar .icon{
-    min-width: 60px;
-    border-radius: 6px;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
+    color: var(--text-color);
 }
 
-.sidebar .text,
-.sidebar .icon{
+.sidebar .text{
+    font-size: 16px;
+    font-weight: 500;
     color: var(--text-color);
     transition: var(--tran-03);
 }
 
-.sidebar .text{
-    font-size: 17px;
-    font-weight: 500;
-    white-space: nowrap;
-    opacity: 1;
-}
-.sidebar.close .text{
-    opacity: 100;
-}
-/* =========================== */
-
-.sidebar header{
-    position: relative;
-}
-
-.sidebar header .image-text{
+.sidebar li a{
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
-}
-.sidebar header .logo-text{
-    display: flex;
-    flex-direction: column;
-}
-header .image-text .name {
-    margin-top: 2px;
-    font-size: 18px;
-    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: var(--tran-03);
+    padding: 0 10px;
 }
 
-header .image-text .profession{
-    font-size: 16px;
-    margin-top: -2px;
-    display: block;
+.sidebar li a:hover{
+    background: var(--primary-color);
+    transform: translateX(5px);
 }
 
-.sidebar header .image{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: #fff;
 }
 
-.sidebar header .image img{
-    width: 40px;
-    border-radius: 6px;
-}
-
-
-
-body.dark .sidebar header .toggle{
-    color: var(--text-color);
-}
-
-
-
-.sidebar .menu{
-    margin-top: 40px;
-}
-
+/* ===== Search Box ===== */
 .sidebar li.search-box{
-    border-radius: 6px;
+    border-radius: 10px;
     background-color: var(--primary-color-light);
-    cursor: pointer;
-    transition: var(--tran-05);
 }
 
 .sidebar li.search-box input{
@@ -160,84 +122,12 @@ body.dark .sidebar header .toggle{
     width: 100%;
     outline: none;
     border: none;
-    background-color: var(--primary-color-light);
+    background: transparent;
     color: var(--text-color);
-    border-radius: 6px;
-    font-size: 17px;
-    font-weight: 500;
-    transition: var(--tran-05);
-}
-.sidebar li a{
-    list-style: none;
-    height: 100%;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: var(--tran-03);
+    font-size: 15px;
 }
 
-.sidebar li a:hover{
-    background-color: var(--primary-color);
-}
-.sidebar li a:hover .icon,
-.sidebar li a:hover .text{
-    color: var(--sidebar-color);
-}
-body.dark .sidebar li a:hover .icon,
-body.dark .sidebar li a:hover .text{
-    color: var(--text-color);
-}
-
-.sidebar .menu-bar{
-    height: calc(100% - 55px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow-y: scroll;
-}
-.menu-bar::-webkit-scrollbar{
-    display: none;
-}
-.sidebar .menu-bar .mode{
-    border-radius: 6px;
-    background-color: var(--primary-color-light);
-    position: relative;
-    transition: var(--tran-05);
-}
-
-.menu-bar .mode .sun-moon{
-    height: 50px;
-    width: 60px;
-}
-
-.mode .sun-moon i{
-    position: absolute;
-}
-.mode .sun-moon i.sun{
-    opacity: 0;
-}
-body.dark .mode .sun-moon i.sun{
-    opacity: 1;
-}
-body.dark .mode .sun-moon i.moon{
-    opacity: 0;
-}
-
-.menu-bar .bottom-content .toggle-switch{
-    position: absolute;
-    right: 0;
-    height: 100%;
-    min-width: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    cursor: pointer;
-}
+/* ===== Toggle Switch ===== */
 .toggle-switch .switch{
     position: relative;
     height: 22px;
@@ -256,7 +146,7 @@ body.dark .mode .sun-moon i.moon{
     top: 50%;
     left: 5px;
     transform: translateY(-50%);
-    background-color: var(--sidebar-color);
+    background-color: #fff;
     transition: var(--tran-04);
 }
 
@@ -264,33 +154,46 @@ body.dark .switch::before{
     left: 20px;
 }
 
+/* ===== Home Section ===== */
 .home{
     position: absolute;
     top: 0;
     left: 250px;
-    min-height: 100vh;   /* ✅ change from height */
+    min-height: 100vh;
     width: calc(100% - 250px);
-    padding: 30px;       /* ⭐ add this (important) */
+    padding: 40px;
 }
 
 .home .text{
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 600;
     color: var(--text-color);
-    padding: 12px 60px;
+    margin-bottom: 20px;
 }
 
-
-
-body.dark .home .text{
-    color: var(--text-color);
+/* ===== Glass Cards ===== */
+.card, .works, .work-card{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transition: var(--tran-03);
 }
 
-.card, .works, .work-card {
-    width: 100%;
-    max-width: 100%;
+body.dark .card,
+body.dark .works,
+body.dark .work-card{
+    background: rgba(255,255,255,0.05);
 }
 
-.work-item {
+.card:hover,
+.work-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.work-item{
     overflow: hidden;
 }

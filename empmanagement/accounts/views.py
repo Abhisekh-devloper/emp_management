@@ -33,21 +33,24 @@ def signup(request):
         password = request.POST["password"]
         cnfpass = request.POST["cnfpass"]
         
-        if password == cnfpass:
-            if(Employee.objects.filter(eID=id).exists()):
-                if(User.objects.filter(username=id).exists()):
-                    messages.info(request,"Employee Already Registered")
-                    return redirect("/signup")
-                else:
-                    user = User.objects.create_user(username=id,password=password)
-                    user.save()
-                    messages.info(request,"Registered Successfully")
-                    return redirect("/signup")
-            else:
-                messages.info(request,"Invalid Employee")
-                return redirect("/signup")
-        else:
-            messages.info(request,"Password Doesn't Match")
+        if password != cnfpass:
+            messages.info(request, "Password Doesn't Match")
             return redirect("/signup")
-            
-    return render(request,"employee/signup.html")
+
+        # Check if employee exists
+        if not Employee.objects.filter(eID=id).exists():
+            messages.info(request, "Invalid Employee")
+            return redirect("/signup")
+
+        # Check if user already exists
+        if User.objects.filter(username=id).exists():
+            messages.info(request, "Employee Already Registered")
+            return redirect("/signup")
+
+        # Create new user
+        user = User.objects.create_user(username=id, password=password)
+        user.save()
+        messages.success(request, "Registered Successfully")
+        return redirect("/login")  # ✅ Redirect to login page after signup
+
+    return render(request, "employee/signup.html")

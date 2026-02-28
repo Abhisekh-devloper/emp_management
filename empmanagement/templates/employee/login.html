@@ -1,135 +1,163 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"> -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Raleway:wght@100&family=Ubuntu:wght@300&display=swap"
-        rel="stylesheet">
     <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            background-color: whitesmoke;
-            box-sizing: border-box;
-        }
-
-        .login {
-            box-shadow: -2px 5px 30px 0.5px rgb(168, 168, 168);
-            border-radius: 5%;
-            width: 50%;
-            margin-top: 9%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            border: none;
-            margin-left: 25%;
-            align-items: center;
-
-        }
-
-        .imgs {
-            height: 65vh;
-            width: 45vw;
-            background-color: white;
-            border: none;
-            align-self: flex-start;
-
-        }
-
-        .login-form {
-            padding-top: 15vh;
-            height: 50vh;
-
-            width: 45vw;
-            background-color: white;
-            align-self: flex-end;
-            border: none;
-            font-family: 'Lobster Two', cursive;
-            font-family: 'Raleway', sans-serif;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
             font-family: 'Ubuntu', sans-serif;
-            color: black;
         }
 
-        table {
-            padding-top: 0vh;
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background: linear-gradient(-45deg, #667eea, #764ba2, #6a11cb, #2575fc);
+            background-size:400% 400%;
+            animation: gradientMove 10s ease infinite;
         }
 
-        tr {
-            line-height: 3vh;
+        @keyframes gradientMove{
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
         }
 
-        input[type=text],
-        input[type=password] {
-            border: none;
-            border-bottom: 0.5px solid black;
+        .login{
+            width:850px;
+            display:flex;
+            border-radius:15px;
+            overflow:hidden;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            box-shadow:0 8px 32px rgba(0,0,0,0.3);
         }
 
-        input[type=submit] {
-            margin-top: 5vh;
-            padding: 1vh 2vh;
-            background-color: rgb(52, 152, 219);
-            border: none;
-            color: white;
-            border-radius: 0.5vh;
+        .imgs{
+            flex:1;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
         }
-        a
-        {
-            text-decoration: none;
-            font-size: small;
+
+        .imgs img{
+            width:90%;
+            height:auto;
         }
-        img
-        {
-            padding-top: 15vh;
-            padding-left: 2vw;
-            width:80%;
-            height: 50%;
+
+        .login-form{
+            flex:1;
+            padding:60px;
+            color:white;
         }
-        .err_message
-        {
-            color:red;
+
+        .login-form h2{
+            margin-bottom:30px;
+            font-size:28px;
+            font-weight:600;
         }
+
+        .login-form label{
+            font-size:14px;
+        }
+
+        .login-form input[type=text],
+        .login-form input[type=password]{
+            width:100%;
+            padding:10px;
+            margin:10px 0 20px 0;
+            border:none;
+            border-radius:5px;
+            outline:none;
+        }
+
+        .login-form input[type=submit]{
+            width:100%;
+            padding:12px;
+            background:#695CFE;
+            border:none;
+            border-radius:5px;
+            color:white;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .login-form input[type=submit]:hover{
+            background:#574bce;
+        }
+
+        .login-form a{
+            color:#fff;
+            text-decoration:none;
+            font-size:14px;
+        }
+
+        .login-form a:hover{
+            text-decoration:underline;
+        }
+
+        .err_message{
+            color:#ff4d4d;
+            margin-top:15px;
+        }
+
+        @media(max-width:900px){
+            .login{
+                flex-direction:column;
+                width:90%;
+            }
+
+            .imgs{
+                display:none;
+            }
+        }
+
     </style>
-
 </head>
 
 <body>
 
-    <div class="login">
-        <div class="imgs"><img src="{% static 'assets/Team.jpg' %}"></div>
-        <div class="login-form">
-            LOGIN
-            <form action="" method="post">
-                {% csrf_token %}
-                <table>
-                    <tr>
-                        <td>Id</td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="id" required></td><br>
-                    </tr>
-                    <tr class="pass">
-                        <td><br>Password</td>
-                    </tr>
-                    <tr>
-                        <td><input type="password" name="password" required></td><br>
-                    </tr>
-                </table>
-                <input type="submit" value="Login"><br><br>
-                <a href="signup">New Employee</a><br><br>
-                <div class="err_message">
-                    {% for msg in messages %}
-                        {{ msg }}        
-                    {% endfor %}
-                </div>
-                
-            </form>
-        </div>
+<div class="login">
+    <div class="imgs">
+        <img src="{% static 'assets/Team.jpg' %}" alt="Team">
     </div>
 
-</body>
+    <div class="login-form">
+        <h2>Employee Login</h2>
 
+        <form method="post">
+            {% csrf_token %}
+
+            <label>ID</label>
+            <input type="text" name="id" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <input type="submit" value="Login">
+
+            <br><br>
+            <a href="signup">New Employee? Sign Up</a>
+
+            <div class="err_message">
+                {% for msg in messages %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
 </html>

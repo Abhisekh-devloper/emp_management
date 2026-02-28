@@ -1,153 +1,84 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"> -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Raleway:wght@100&family=Ubuntu:wght@300&display=swap"
-        rel="stylesheet">
-    <title>SignUp</title>
-    <style>
-        body {
-            background-color: whitesmoke;
-            box-sizing: border-box;
-        }
-
-        .login {
-            box-shadow: -2px 5px 30px 0.5px rgb(168, 168, 168);
-            border-radius: 5%;
-            width: 50%;
-            margin-top: 7%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            border: none;
-            margin-left: 25%;
-            align-items: center;
-
-        }
-
-        .imgs {
-            height: 73vh;
-            width: 45vw;
-            background-color: white;
-            border: none;
-            align-self: flex-start;
-
-        }
-
-        .login-form {
-            padding-top: 15vh;
-            height: 58vh;
-
-            width: 45vw;
-            background-color: white;
-            align-self: flex-end;
-            border: none;
-            font-family: 'Lobster Two', cursive;
-            font-family: 'Raleway', sans-serif;
-            font-family: 'Ubuntu', sans-serif;
-            color: black;
-        }
-
-        table {
-            padding-top: 0vh;
-        }
-
-        tr {
-            line-height: 3vh;
-        }
-
-        input[type=text],
-        input[type=password] {
-            border: none;
-            border-bottom: 0.5px solid black;
-        }
-
-        input[type=submit] {
-            margin-top: 5vh;
-            padding: 1vh 2vh;
-            background-color: rgb(52, 152, 219);
-            border: none;
-            color: white;
-            border-radius: 0.5vh;
-        }
-        a
-        {
-            text-decoration: none;
-            font-size: small;
-        }
-        img
-        {
-            padding-top: 17vh;
-            height:50%;
-            
-        }
-        .err_message
-        {
-            
-            color:red;
-        }
-        .success_message
-        {
-            
-            color:green;
-        }
-    </style>
-
+    <title>Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-sans">
 
-<body>
+    <div class="bg-white shadow-xl rounded-2xl flex flex-col md:flex-row w-full max-w-4xl overflow-hidden h-auto md:h-[500px]">
 
-    <div class="login">
-        <div class="imgs"><img src="{% static 'assets/welcome.webp' %}"></div>
-        <div class="login-form">
-            SIGN UP
-            <form action="" method="post">
+        <!-- Left Image -->
+      <div class="md:w-1/2 hidden md:flex items-center justify-center">
+    <img src="{% static 'assets/welcome.webp' %}" 
+         alt="Welcome"
+         class="w-3/4 h-auto object-contain transition-transform duration-700 ease-out transform hover:scale-105">
+</div> 
+        <!-- Form Section -->
+        <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+
+            <h2 class="text-3xl font-bold text-purple-700 mb-6 text-center">Sign Up</h2>
+
+            <form action="" method="post" class="space-y-4">
                 {% csrf_token %}
-                <table>
-                    <tr>
-                        <td>Id</td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="id" required></td><br>
-                    </tr>
-                    <tr class="pass">
-                        <td><br>Password</td>
-                    </tr>
-                    <tr>
-                        <td><input type="password" name="password" required></td><br>
-                    </tr>
-                    <tr class="pass">
-                        <td><br>Confirm Password</td>
-                    </tr>
-                    <tr>
-                        <td><input type="password" name="cnfpass" required></td><br>
-                    </tr>
-                </table>
-                <input type="submit" value="Sign Up"><br><br>
-                
+
+                <!-- User ID -->
+                <div class="flex flex-col">
+                    <label for="id" class="text-gray-700 font-medium mb-1">User ID</label>
+                    <input type="text" name="id" id="id" required
+                           class="border-b-2 border-gray-300 focus:border-purple-500 outline-none py-2 px-1 transition">
+                </div>
+
+                <!-- Password -->
+                <div class="flex flex-col">
+                    <label for="password" class="text-gray-700 font-medium mb-1">Password</label>
+                    <input type="password" name="password" id="password" required
+                           class="border-b-2 border-gray-300 focus:border-purple-500 outline-none py-2 px-1 transition">
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="flex flex-col">
+                    <label for="cnfpass" class="text-gray-700 font-medium mb-1">Confirm Password</label>
+                    <input type="password" name="cnfpass" id="cnfpass" required
+                           class="border-b-2 border-gray-300 focus:border-purple-500 outline-none py-2 px-1 transition">
+                </div>
+
+                <!-- Submit -->
+                <div class="flex justify-center mt-4">
+                    <button type="submit"
+                            class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition duration-300">
+                        Sign Up
+                    </button>
+                </div>
+
+                <!-- Messages -->
+                {% if messages %}
+                <div class="mt-4 space-y-2">
                     {% for msg in messages %}
                         {% if msg == "Registered Successfully" %}
-                            <div class="success_message">
-                                {{msg}}
+                            <div class="text-green-600 font-medium">
+                                {{ msg }} - 
+                                <a href="{% url 'login' %}" class="text-purple-600 hover:underline">Click here to Sign In</a>
                             </div>
                         {% else %}
-                            <div class="err_message">
-                                {{msg}}
-                            </div>
+                            <div class="text-red-600 font-medium">{{ msg }}</div>
                         {% endif %}
                     {% endfor %}
-                
-            </form>
-        </div>
-    </div>
-    
-    
-</body>
+                </div>
+                {% endif %}
 
+            </form>
+
+            <p class="mt-6 text-center text-gray-600 text-sm">
+                Already have an account? 
+                <a href="{% url 'login_user' %}" class="text-purple-600 hover:underline">Login here</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
 </html>
