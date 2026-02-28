@@ -1,4 +1,4 @@
-# Smart employee management syytem with workforce analytics - Django(Python)
+# Smart employee management system with workforce analytics - Django(Python)
 
 Employee Management System built in a Python Framework Django and PostgreSQL as Database. This webapp include the functionality like...
 
