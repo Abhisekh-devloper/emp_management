@@ -70,6 +70,9 @@ Admin (Manage Employee)
 
 >If you found this useful, make sure to give it a star 🌟
 
+
 DEVELOPED BY: ABHISEKH MOHANTY🧑‍💻🧑‍💻
+BRANCH : B-TECH (CSE)
+
 
 ## Thank You!!
