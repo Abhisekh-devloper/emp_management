@@ -50,7 +50,7 @@ Signup
 ![Signup](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/signup.png?raw=true "Signup")
 
 Dashboard
-![Dashboard](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/Dashboard.png?raw=true "Dashboard")
+![Dashboard]( "Dashboard")
 
 Assign Work
 ![Assign Work](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/assign_work.png?raw=true "Assign Work")
