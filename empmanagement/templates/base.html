@@ -3,111 +3,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="{% static './css/style.css' %}">
-    
-    <!----===== Boxicons CSS ===== -->
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link href='https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css' rel='stylesheet'>
-    
-    <title>Employee Management</title> 
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{% static './css/style.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+<link href='https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css' rel='stylesheet'>
+
+<title>Employee Management</title>
+
+<style>
+
+/* Sidebar */
+
+.sidebar{
+background:#ffffff;
+box-shadow:0 10px 40px rgba(0,0,0,0.08);
+width:250px;
+}
+
+/* Logo */
+
+.logo-text .name{
+font-weight:700;
+color:#7924c9;
+}
+
+.logo-text .profession{
+font-size:13px;
+color:#777;
+}
+
+/* Menu */
+
+.menu-links{
+margin-top:20px;
+}
+
+.menu-links li{
+margin:6px 10px;
+}
+
+/* Menu link */
+
+.menu-links li a{
+display:flex;
+align-items:center;
+gap:12px;
+padding:12px 16px;
+border-radius:10px;
+transition:all .3s ease;
+color:#555;
+font-weight:500;
+white-space:normal;
+}
+
+/* Icons */
+
+.menu-links li a .icon{
+font-size:20px;
+color:#888;
+min-width:20px;
+}
+
+/* Hover */
+
+.menu-links li a:hover{
+background:#f3e8ff;
+color:#7924c9;
+transform:translateX(4px);
+}
+
+.menu-links li a:hover .icon{
+color:#7924c9;
+}
+
+/* Active */
+
+.menu-links li a.active{
+background:#7924c9;
+color:white;
+}
+
+.menu-links li a.active .icon{
+color:white;
+}
+
+/* Logout */
+
+.bottom-content{
+margin-top:20px;
+}
+
+.bottom-content a{
+display:flex;
+align-items:center;
+gap:12px;
+padding:12px 16px;
+border-radius:10px;
+color:#ef4444;
+margin:10px;
+transition:.3s;
+}
+
+.bottom-content a:hover{
+background:#fee2e2;
+}
+
+/* Toggle */
+
+.toggle{
+font-size:22px;
+cursor:pointer;
+color:#7924c9;
+}
+
+</style>
+
 </head>
+
 <body>
-    <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="{% static 'assets/logo.png' %}" alt="">
-                </span>
 
-                <div class="text logo-text">
-                    <span class="name">Employee</span>
-                    <span class="profession">Management</span>
-                </div>
-            </div>
+<nav class="sidebar close">
 
-            <i class='toggle'></i>
-        </header>
+<header>
 
-        <div class="menu-bar">
-            <div class="menu">
+<div class="image-text">
+<span class="image">
+<img src="{% static 'assets/logo.png' %}" alt="">
+</span>
 
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="/ems/dashboard">
-                            <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Dashboard</span>
-                        </a>
-                    </li>
+<div class="text logo-text">
+<span class="name">Employee</span>
+<span class="profession">Management</span>
+</div>
+</div>
 
-                    <li class="nav-link">
-                        <a href="/ems/assignwork">
-                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
-                            <span class="text nav-text">Assign Work</span>
-                        </a>
-                    </li>
+<i class='bx bx-chevron-right toggle'></i>
 
-                    <li class="nav-link">
-                        <a href="/ems/notice">
-                            <i class='bx bx-bell icon'></i>
-                            <span class="text nav-text">Notice</span>
-                        </a>
-                    </li>
+</header>
 
-                    <li class="nav-link">
-                        <a href="/ems/makeRequest">
-                            <i class='bx bx-message-error icon' ></i>
-                            <span class="text nav-text">Request</span>
-                        </a>
-                    </li>
+<div class="menu-bar">
 
-                    <li class="nav-link">
-                        <a href="/ems/attendance">
-                            <i class='bx bx-calendar icon' ></i>
-                            <span class="text nav-text">Attendance</span>
-                        </a>
-                    </li>
+<div class="menu">
 
-                    <li class="nav-link">
-                        <a href="/ems/mywork">
-                            <i class='bx bx-task icon'></i>
-                            <span class="text nav-text">My Work</span>
-                        </a>
-                    </li>
+<ul class="menu-links">
 
-                    <li class="nav-link">
-                        <a href="/ems/editAW">
-                            <i class='bx bx-edit-alt icon' ></i>
-                            <span class="text nav-text">Edit Assigned Works</span>
-                        </a>
-                    </li>
-                    
-                </ul>
-            </div>
+<li class="nav-link">
+<a href="/ems/dashboard" class="active">
+<i class='bx bx-home-alt icon'></i>
+<span class="text nav-text">Dashboard</span>
+</a>
+</li>
 
-            <div class="bottom-content">
-                <li class="">
-                    <a href="/logout">
-                        <i class='bx bx-log-out icon' ></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>                
-            </div>
-        </div>
+<li class="nav-link">
+<a href="/ems/assignwork">
+<i class='bx bx-briefcase icon'></i>
+<span class="text nav-text">Assign Work</span>
+</a>
+</li>
 
-    </nav>
+<li class="nav-link">
+<a href="/ems/notice">
+<i class='bx bx-bell icon'></i>
+<span class="text nav-text">Notice</span>
+</a>
+</li>
 
-    
-    {% block content %}
-    
-    {% endblock %}
-    
-    
-    <script src="{% static './js/script.js' %}"></script>
+<li class="nav-link">
+<a href="/ems/makeRequest">
+<i class='bx bx-message-square-detail icon'></i>
+<span class="text nav-text">Request</span>
+</a>
+</li>
+
+<li class="nav-link">
+<a href="/ems/attendance">
+<i class='bx bx-calendar-check icon'></i>
+<span class="text nav-text">Attendance</span>
+</a>
+</li>
+
+<li class="nav-link">
+<a href="/ems/mywork">
+<i class='bx bx-task icon'></i>
+<span class="text nav-text">My Work</span>
+</a>
+</li>
+
+<li class="nav-link">
+<a href="/ems/editAW">
+<i class='bx bx-edit icon'></i>
+<span class="text nav-text">Edit Assigned Work</span>
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<div class="bottom-content">
+
+<li>
+<a href="/logout">
+<i class='bx bx-log-out icon'></i>
+<span class="text nav-text">Logout</span>
+</a>
+</li>
+
+</div>
+
+</div>
+
+</nav>
+
+{% block content %}
+{% endblock %}
+
+<script src="{% static './js/script.js' %}"></script>
 
 </body>
 </html>

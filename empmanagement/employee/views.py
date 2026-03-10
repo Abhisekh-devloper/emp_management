@@ -7,7 +7,16 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='/')
 def dashboard(request):
+
     employee = Employee.objects.get(eID=request.user.username)
+
+    # Handle profile photo upload
+    if request.method == "POST":
+        if request.FILES.get('profile_photo'):
+            employee.profile_photo = request.FILES['profile_photo']
+            employee.save()
+            messages.success(request, "Profile photo uploaded successfully!")
+
     return render(request, "employee/dashboard.html", {'employee': employee})
     
 @login_required(login_url='/')
