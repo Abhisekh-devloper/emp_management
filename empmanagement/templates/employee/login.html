@@ -2,161 +2,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: 'Ubuntu', sans-serif;
-        }
+<style>
 
-        body{
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background: linear-gradient(-45deg, #667eea, #764ba2, #6a11cb, #2575fc);
-            background-size:400% 400%;
-            animation: gradientMove 10s ease infinite;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Ubuntu',sans-serif;
+}
 
-        @keyframes gradientMove{
-            0%{background-position:0% 50%;}
-            50%{background-position:100% 50%;}
-            100%{background-position:0% 50%;}
-        }
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background: linear-gradient(-45deg,#667eea,#764ba2,#6a11cb,#2575fc);
+background-size:400% 400%;
+animation:gradientMove 10s ease infinite;
+}
 
-        .login{
-            width:850px;
-            display:flex;
-            border-radius:15px;
-            overflow:hidden;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(15px);
-            box-shadow:0 8px 32px rgba(0,0,0,0.3);
-        }
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
 
-        .imgs{
-            flex:1;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            padding:20px;
-        }
+.login{
+width:850px;
+display:flex;
+border-radius:20px;
+overflow:hidden;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+box-shadow:0 10px 35px rgba(0,0,0,0.35);
+}
 
-        .imgs img{
-            width:90%;
-            height:auto;
-        }
+.imgs{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
 
-        .login-form{
-            flex:1;
-            padding:60px;
-            color:white;
-        }
+.imgs img{
+width:90%;
+border-radius:10px;
+}
 
-        .login-form h2{
-            margin-bottom:30px;
-            font-size:28px;
-            font-weight:600;
-        }
+.login-form{
+flex:1;
+padding:60px;
+color:white;
+}
 
-        .login-form label{
-            font-size:14px;
-        }
+.login-form h2{
+margin-bottom:35px;
+font-size:30px;
+font-weight:600;
+}
 
-        .login-form input[type=text],
-        .login-form input[type=password]{
-            width:100%;
-            padding:10px;
-            margin:10px 0 20px 0;
-            border:none;
-            border-radius:5px;
-            outline:none;
-        }
+.login-form label{
+font-size:14px;
+}
 
-        .login-form input[type=submit]{
-            width:100%;
-            padding:12px;
-            background:#695CFE;
-            border:none;
-            border-radius:5px;
-            color:white;
-            cursor:pointer;
-            transition:0.3s;
-        }
+.login-form input[type=text],
+.login-form input[type=password]{
+width:100%;
+padding:14px 18px;
+margin:10px 0 22px 0;
+border:none;
+border-radius:30px;
+outline:none;
+font-size:14px;
+background:rgba(255,255,255,0.9);
+transition:0.3s;
+}
 
-        .login-form input[type=submit]:hover{
-            background:#574bce;
-        }
+.login-form input[type=text]:focus,
+.login-form input[type=password]:focus{
+box-shadow:0 0 10px rgba(105,92,254,0.7);
+}
 
-        .login-form a{
-            color:#fff;
-            text-decoration:none;
-            font-size:14px;
-        }
+.login-form input[type=submit]{
+width:100%;
+padding:14px;
+background:#695CFE;
+border:none;
+border-radius:30px;
+color:white;
+font-size:15px;
+font-weight:500;
+cursor:pointer;
+transition:0.3s;
+}
 
-        .login-form a:hover{
-            text-decoration:underline;
-        }
+.login-form input[type=submit]:hover{
+background:#574bce;
+transform:scale(1.03);
+}
 
-        .err_message{
-            color:#ff4d4d;
-            margin-top:15px;
-        }
+.login-form a{
+color:#fff;
+text-decoration:none;
+font-size:14px;
+}
 
-        @media(max-width:900px){
-            .login{
-                flex-direction:column;
-                width:90%;
-            }
+.login-form a:hover{
+text-decoration:underline;
+}
 
-            .imgs{
-                display:none;
-            }
-        }
+.err_message{
+color:#ff4d4d;
+margin-top:15px;
+}
 
-    </style>
+@media(max-width:900px){
+
+.login{
+flex-direction:column;
+width:90%;
+}
+
+.imgs{
+display:none;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="login">
-    <div class="imgs">
-        <img src="{% static 'assets/Team.jpg' %}" alt="Team">
-    </div>
 
-    <div class="login-form">
-        <h2>Employee Login</h2>
+<div class="imgs">
+<img src="{% static 'assets/Team.jpg' %}" alt="Team">
+</div>
 
-        <form method="post">
-            {% csrf_token %}
+<div class="login-form">
 
-            <label>ID</label>
-            <input type="text" name="id" required>
+<h2>Employee Login</h2>
 
-            <label>Password</label>
-            <input type="password" name="password" required>
+<form method="post">
+{% csrf_token %}
 
-            <input type="submit" value="Login">
+<label>ID</label>
+<input type="text" name="id" placeholder="Enter Employee ID" required>
 
-            <br><br>
-            <a href="signup">New Employee? Sign Up</a>
+<label>Password</label>
+<input type="password" name="password" placeholder="Enter Password" required>
 
-            <div class="err_message">
-                {% for msg in messages %}
-                    {{ msg }}
-                {% endfor %}
-            </div>
+<input type="submit" value="Login">
 
-        </form>
-    </div>
+<br><br>
+
+<a href="signup">New Employee? Sign Up</a>
+
+<div class="err_message">
+{% for msg in messages %}
+{{ msg }}
+{% endfor %}
+</div>
+
+</form>
+
+</div>
+
 </div>
 
 </body>
