@@ -192,7 +192,7 @@ Your project will now be running.
 ![Login](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/Login.png?raw=true)
 
 ## 📝 Signup
-![Signup](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/signup.png?raw=true)
+![Signup](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/signup.png)
 
 ## 📊 Dashboard
 ![Dashboard](https://github.com/Abhisekh-devloper/emp_management/blob/main/screenshots/Dashboard.png)
