@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="{% static './css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 <link href='https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css' rel='stylesheet'>
 
@@ -16,7 +16,6 @@
 <style>
 
 /* Sidebar */
-
 .sidebar{
 background:#ffffff;
 box-shadow:0 10px 40px rgba(0,0,0,0.08);
@@ -24,29 +23,24 @@ width:250px;
 }
 
 /* Logo */
-
 .logo-text .name{
 font-weight:700;
 color:#7924c9;
 }
-
 .logo-text .profession{
 font-size:13px;
 color:#777;
 }
 
 /* Menu */
-
 .menu-links{
 margin-top:20px;
 }
-
 .menu-links li{
 margin:6px 10px;
 }
 
 /* Menu link */
-
 .menu-links li a{
 display:flex;
 align-items:center;
@@ -56,11 +50,9 @@ border-radius:10px;
 transition:all .3s ease;
 color:#555;
 font-weight:500;
-white-space:normal;
 }
 
 /* Icons */
-
 .menu-links li a .icon{
 font-size:20px;
 color:#888;
@@ -68,51 +60,68 @@ min-width:20px;
 }
 
 /* Hover */
-
 .menu-links li a:hover{
 background:#f3e8ff;
 color:#7924c9;
 transform:translateX(4px);
 }
-
 .menu-links li a:hover .icon{
 color:#7924c9;
 }
 
 /* Active */
-
 .menu-links li a.active{
 background:#7924c9;
 color:white;
 }
-
 .menu-links li a.active .icon{
 color:white;
 }
 
-/* Logout */
-
+/* 🔴 Logout Button */
 .bottom-content{
 margin-top:20px;
+padding:12px;
 }
 
 .bottom-content a{
 display:flex;
 align-items:center;
-gap:12px;
+justify-content:center;
+gap:10px;
 padding:12px 16px;
-border-radius:10px;
-color:#ef4444;
-margin:10px;
-transition:.3s;
+border-radius:50px;
+background:#dc2626;
+color:#ffffff;
+font-weight:600;
+letter-spacing:0.5px;
+box-shadow:0 6px 15px rgba(220,38,38,0.4);
+transition:all .25s ease;
 }
 
+/* 🚪 ICON ALWAYS RED */
+.bottom-content a .icon{
+color:#dc2626 !important;   /* FORCE RED */
+background:#ffffff;
+padding:6px;
+border-radius:50%;
+}
+
+/* Hover (no color change) */
 .bottom-content a:hover{
-background:#fee2e2;
+background:#dc2626;
+color:#ffffff;
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(220,38,38,0.5);
+}
+
+/* 🚪 KEEP ICON RED ON HOVER */
+.bottom-content a:hover .icon{
+color:#dc2626 !important;
+background:#ffffff;
 }
 
 /* Toggle */
-
 .toggle{
 font-size:22px;
 cursor:pointer;
@@ -128,10 +137,9 @@ color:#7924c9;
 <nav class="sidebar close">
 
 <header>
-
 <div class="image-text">
 <span class="image">
-<img src="{% static 'assets/logo.png' %}" alt="">
+<img src="{% static 'assets/logo.png' %}" alt="logo">
 </span>
 
 <div class="text logo-text">
@@ -141,13 +149,11 @@ color:#7924c9;
 </div>
 
 <i class='bx bx-chevron-right toggle'></i>
-
 </header>
 
 <div class="menu-bar">
 
 <div class="menu">
-
 <ul class="menu-links">
 
 <li class="nav-link">
@@ -200,18 +206,15 @@ color:#7924c9;
 </li>
 
 </ul>
-
 </div>
 
 <div class="bottom-content">
-
 <li>
 <a href="/logout">
 <i class='bx bx-log-out icon'></i>
 <span class="text nav-text">Logout</span>
 </a>
 </li>
-
 </div>
 
 </div>
@@ -221,7 +224,7 @@ color:#7924c9;
 {% block content %}
 {% endblock %}
 
-<script src="{% static './js/script.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>
