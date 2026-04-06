@@ -1,49 +1,145 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="home p-6 bg-gray-100 min-h-screen">
 
-  <div class="text-center mb-6">
-    <h1 class="text-2xl md:text-3xl font-bold text-purple-700">
-      📄 Request Details
-    </h1>
-  </div>
+<style>
 
-  <div class="max-w-3xl mx-auto">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+body{
+background:linear-gradient(135deg,#0f172a,#1e1b4b);
+font-family:'Poppins',sans-serif;
+}
 
-      <table class="min-w-full">
-        <thead class="bg-purple-100">
-          <tr>
-            <th class="text-left text-gray-900 px-6 py-3 text-lg font-semibold">Notice Info</th>
-            <th class="text-left text-gray-900 px-6 py-3"></th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200">
-          <tr class="hover:bg-purple-50 transition duration-200">
-            <td class="px-6 py-4 font-medium text-gray-800">Requested By</td>
-            <td class="px-6 py-4 text-gray-700">{{ requestdetail.requesterId }}</td>
-          </tr>
+/* Section */
 
-          <tr class="hover:bg-purple-50 transition duration-200">
-            <td class="px-6 py-4 font-medium text-gray-800">Request To</td>
-            <td class="px-6 py-4 text-gray-700">{{ requestdetail.destinationEmployeeId }}</td>
-          </tr>
+.home{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+min-height:100vh;
+padding-top:30px;
+padding-left:60px;
+padding-right:20px;
+color:#ffffff;
+}
 
-          <tr class="hover:bg-purple-50 transition duration-200">
-            <td class="px-6 py-4 font-medium text-gray-800">Request Message</td>
-            <td class="px-6 py-4 text-gray-700">{{ requestdetail.requestMessage }}</td>
-          </tr>
+/* Title */
 
-          <tr class="hover:bg-purple-50 transition duration-200">
-            <td class="px-6 py-4 font-medium text-gray-800">Requested Date</td>
-            <td class="px-6 py-4 text-gray-700">{{ requestdetail.requestDate }}</td>
-          </tr>
-        </tbody>
-      </table>
+.page-title{
+font-size:28px;
+font-weight:700;
+margin-bottom:20px;
+color:#6fe919;
+}
 
-    </div>
-  </div>
+/* Card */
+
+.request-detail-card{
+width:100%;
+max-width:800px;
+background:#1e293b;
+border-radius:18px;
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+border:1px solid rgba(255,255,255,0.05);
+overflow:hidden;
+}
+
+/* Table */
+
+.request-table{
+width:100%;
+border-collapse:collapse;
+}
+
+/* Header */
+
+.request-table thead{
+background:#0f172a;
+}
+
+.request-table th{
+text-align:left;
+padding:15px;
+color:#facc15;
+font-size:16px;
+}
+
+/* Rows */
+
+.request-table td{
+padding:14px;
+border-top:1px solid rgba(255,255,255,0.05);
+}
+
+/* Labels */
+
+.label{
+color:#facc15;
+font-weight:500;
+}
+
+/* Values */
+
+.value{
+color:#cbd5f5;
+}
+
+/* Hover */
+
+.request-table tr:hover{
+background:rgba(255,255,255,0.03);
+}
+
+</style>
+
+<section class="home">
+
+<div>
+
+<div class="page-title">
+📄 Request Details
+</div>
+
+<div class="request-detail-card">
+
+<table class="request-table">
+
+<thead>
+<tr>
+<th>Request Info</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td class="label">Requested By</td>
+<td class="value">{{ requestdetail.requesterId }}</td>
+</tr>
+
+<tr>
+<td class="label">Request To</td>
+<td class="value">{{ requestdetail.destinationEmployeeId }}</td>
+</tr>
+
+<tr>
+<td class="label">Request Message</td>
+<td class="value">{{ requestdetail.requestMessage }}</td>
+</tr>
+
+<tr>
+<td class="label">Requested Date</td>
+<td class="value">{{ requestdetail.requestDate }}</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
 
 </section>
+
 {% endblock %}

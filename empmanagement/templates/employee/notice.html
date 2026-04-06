@@ -1,41 +1,127 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="home p-8">
 
-    <h1 class="text-2xl font-bold text-purple-700 mb-6"
-        style="font-family: 'Times New Roman', Times, serif;">
-        📢 Notices
-    </h1>
+<style>
 
-    <div class="max-w-2xl mx-auto space-y-4">
+body{
+background:linear-gradient(135deg,#0f172a,#1e1b4b);
+font-family:'Poppins',sans-serif;
+}
 
-        {% for info in notices %}
-        <div class="bg-white p-5 rounded-xl shadow-md 
-                    transition duration-300 hover:shadow-xl hover:scale-105">
+/* Section */
 
-            <h2 class="text-lg font-semibold text-purple-700">
-                {{ info.title }}
-            </h2>
+.home{
+padding:40px;
+color:#ffffff;
+}
 
-            <p class="text-gray-500 text-sm mt-1">
-                📅 {{ info.publishDate }}
-            </p>
+/* Title */
 
-            <div class="mt-4">
-                <a href="{% url 'noticedetail' id=info.Id %}"
-                   class="px-4 py-2 bg-purple-600 text-white rounded-lg 
-                          hover:bg-purple-700 transition duration-300">
-                    View Details
-                </a>
-            </div>
+.page-title{
+font-size:30px;
+font-weight:700;
+margin-bottom:25px;
+color:#6fe919;
+font-family:'Times New Roman', Times, serif;
+}
 
-        </div>
-        {% empty %}
-        <p class="text-gray-600">No notices available.</p>
-        {% endfor %}
+/* Notice Container */
 
-    </div>
+.notice-container{
+max-width:900px;
+margin-top:10px;
+}
+
+/* Notice Card */
+
+.notice-card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+border:1px solid rgba(255,255,255,0.05);
+transition:0.3s;
+margin-bottom:15px;
+}
+
+.notice-card:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+border-color:#9b43ed;
+}
+
+/* Notice Title */
+
+.notice-title{
+font-size:18px;
+font-weight:600;
+color:#facc15;   /* same yellow */
+}
+
+/* Date */
+
+.notice-date{
+font-size:13px;
+color:#94a3b8;
+margin-top:4px;
+}
+
+/* Button */
+
+.view-btn{
+display:inline-block;
+margin-top:12px;
+padding:8px 16px;
+background:#9b43ed;
+color:#fff;
+border-radius:8px;
+text-decoration:none;
+font-size:13px;
+transition:0.3s;
+}
+
+.view-btn:hover{
+background:#7e22ce;
+}
+
+.no-data{
+color:#cbd5f5;
+}
+
+</style>
+
+<section class="home">
+
+<div class="page-title">
+📢 Notices
+</div>
+
+<div class="notice-container">
+
+{% for info in notices %}
+<div class="notice-card">
+
+<div class="notice-title">
+{{ info.title }}
+</div>
+
+<div class="notice-date">
+📅 {{ info.publishDate }}
+</div>
+
+<a href="{% url 'noticedetail' id=info.Id %}" class="view-btn">
+View Details
+</a>
+
+</div>
+
+{% empty %}
+<p class="no-data">No notices available.</p>
+{% endfor %}
+
+</div>
 
 </section>
+
 {% endblock %}

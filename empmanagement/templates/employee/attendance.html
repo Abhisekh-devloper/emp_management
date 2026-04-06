@@ -1,62 +1,166 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="p-10">
 
+<style>
 
+body{
+background:linear-gradient(135deg,#0f172a,#1e1b4b);
+font-family:'Poppins',sans-serif;
+}
 
-    <div class="max-w-4xl mx-auto">
+/* Section */
 
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+.home{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+min-height:100vh;
+padding-top:30px;
+padding-left:80px;   /* adjust for sidebar */
+padding-right:20px;
+color:#ffffff;
+}
 
-            <!-- Table Header -->
-            <div class="bg-purple-600 text-white px-6 py-4">
-                <h2 class="text-lg font-semibold">Monthly Attendance Record</h2>
-            </div>
+/* Title */
 
-            <!-- Table -->
-            <div class="overflow-x-auto">
-                <table class="min-w-full text-left">
+.page-title{
+font-size:28px;
+font-weight:700;
+margin-bottom:20px;
+color:#6fe919;
+}
 
-                    <thead class="bg-purple-100">
-                        <tr>
-                            <th class="px-6 py-3 text-purple-800 font-semibold">
-                                Month
-                            </th>
-                            <th class="px-6 py-3 text-purple-800 font-semibold">
-                                Days Present
-                            </th>
-                        </tr>
-                    </thead>
+/* Card */
 
-                    <tbody>
-                        {% for info in info %}
-                        <tr class="border-b transition duration-300 hover:bg-purple-50 hover:scale-[1.01]">
+.attendance-card{
+width:100%;
+max-width:1200px;   /* 🔥 increased width */
+background:#1e293b;
+border-radius:18px;
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+border:1px solid rgba(255,255,255,0.05);
+overflow:hidden;
+}
 
-                            <td class="px-6 py-4 font-medium text-gray-700">
-                                {{ info.month }}
-                            </td>
+/* Header */
 
-                            <td class="px-6 py-4 text-gray-600">
-                                {{ info.days }}
-                            </td>
+.card-header{
+background:#0f172a;
+padding:15px 20px;
+color:#facc15;
+font-size:16px;
+font-weight:600;
+}
 
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="2" class="px-6 py-4 text-center text-gray-500">
-                                No attendance records found.
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
+/* Table */
 
-                </table>
-            </div>
+.attendance-table{
+width:100%;
+border-collapse:collapse;
+}
 
-        </div>
+/* Head */
 
-    </div>
+.attendance-table thead{
+background:#020617;
+}
+
+.attendance-table th{
+padding:14px;
+text-align:left;
+color:#facc15;
+font-size:14px;
+}
+
+/* Body */
+
+.attendance-table td{
+padding:14px;
+border-top:1px solid rgba(255,255,255,0.05);
+}
+
+/* Row Hover */
+
+.attendance-table tr:hover{
+background:rgba(255,255,255,0.03);
+}
+
+/* Text */
+
+.month{
+color:#ffffff;
+font-weight:500;
+}
+
+.days{
+color:#cbd5f5;
+}
+
+/* Empty */
+
+.empty{
+text-align:center;
+color:#94a3b8;
+padding:20px;
+}
+
+</style>
+
+<section class="home">
+
+<div>
+
+<div class="page-title">
+📊 Monthly Attendance
+</div>
+
+<div class="attendance-card">
+
+<div class="card-header">
+Monthly Attendance Record
+</div>
+
+<div style="overflow-x:auto;">
+
+<table class="attendance-table">
+
+<thead>
+<tr>
+<th>Month</th>
+<th>Days Present</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for info in info %}
+
+<tr>
+<td class="month">{{ info.month }}</td>
+<td class="days">{{ info.days }}</td>
+</tr>
+
+{% empty %}
+
+<tr>
+<td colspan="2" class="empty">
+No attendance records found.
+</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
+
 {% endblock %}

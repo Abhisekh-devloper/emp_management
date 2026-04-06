@@ -2,47 +2,156 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="home p-6 bg-gray-100 min-h-screen">
 
-  <div class="text-center mb-6">
-      <h1 class="text-2xl md:text-3xl font-bold text-purple-700"
-          style="font-family: 'Times New Roman', Times, serif;">
-          📝 My Work
-      </h1>
-  </div>
+<style>
 
-  <div class="max-w-3xl mx-auto space-y-4">
+/* RESET */
+html, body{
+margin:0;
+padding:0;
+background:linear-gradient(135deg,#0f172a,#1e1b4b);
+font-family:'Poppins',sans-serif;
+}
 
-    {% for info in work %}
-    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow hover:shadow-lg transition duration-300 p-4 cursor-pointer">
-        <div class="flex justify-between items-center mb-2">
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white truncate">
-                Work Assigned By: <span class="text-purple-600">{{ info.assignerId }}</span>
-            </h3>
-            <span class="text-sm text-gray-500 dark:text-gray-400">
-                Due: {{ info.dueDate }}
-            </span>
-        </div>
+/* SECTION */
+.home{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+padding:30px 20px;
+}
 
-        <p class="text-sm text-gray-700 dark:text-gray-300">
-            Assigned Date: <b>{{ info.assignDate }}</b>
-        </p>
+/* CONTAINER */
+.work-container{
+width:100%;
+max-width:900px;
+}
 
-        <p class="mt-2 text-gray-800 dark:text-gray-200 line-clamp-2">
-            <b>Work Details:</b> {{ info.work }}
-        </p>
+/* TITLE */
+.page-title{
+text-align:center;
+font-size:28px;
+font-weight:700;
+margin-bottom:20px;
+color:#6fe919;
+}
 
-        <div class="mt-3 flex justify-end">
-            <a href="{% url 'workdetails' wid=info.id %}" 
-               class="px-3 py-1 bg-purple-600 text-white rounded-lg text-sm 
-                      hover:bg-purple-700 transition duration-300 shadow-sm hover:shadow-md">
-               View Details
-            </a>
-        </div>
-    </div>
-    {% endfor %}
+/* CARD */
+.work-card{
+background:#1e293b;
+border-radius:16px;
+padding:16px;
+margin-bottom:16px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+border:1px solid rgba(255,255,255,0.05);
+transition:0.3s;
+}
 
-  </div>
+.work-card:hover{
+transform:translateY(-3px);
+box-shadow:0 15px 30px rgba(0,0,0,0.6);
+}
+
+/* HEADER */
+.card-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:8px;
+}
+
+.card-title{
+font-size:16px;
+font-weight:600;
+color:#e2e8f0;
+}
+
+.highlight{
+color:#6fe919;
+}
+
+/* DATE */
+.date{
+font-size:13px;
+color:#94a3b8;
+}
+
+/* TEXT */
+.card-text{
+font-size:14px;
+color:#cbd5f5;
+margin-top:5px;
+}
+
+/* BUTTON */
+.btn{
+display:inline-block;
+margin-top:10px;
+padding:6px 14px;
+background:#6fe919;
+color:#020617;
+border-radius:8px;
+font-size:13px;
+font-weight:500;
+text-decoration:none;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#4ade80;
+}
+
+/* REMOVE BOTTOM GAP */
+section{
+margin-bottom:0 !important;
+padding-bottom:0 !important;
+}
+
+</style>
+
+<section class="home">
+
+<div class="work-container">
+
+<div class="page-title">
+📝 My Work
+</div>
+
+{% for info in work %}
+
+<div class="work-card">
+
+<div class="card-header">
+<div class="card-title">
+Work Assigned By: 
+<span class="highlight">{{ info.assignerId }}</span>
+</div>
+
+<div class="date">
+Due: {{ info.dueDate }}
+</div>
+</div>
+
+<div class="card-text">
+Assigned Date: <b>{{ info.assignDate }}</b>
+</div>
+
+<div class="card-text">
+<b>Work Details:</b> {{ info.work }}
+</div>
+
+<div style="text-align:right;">
+<a href="{% url 'workdetails' wid=info.id %}" class="btn">
+View Details
+</a>
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
 
 </section>
+
 {% endblock %}

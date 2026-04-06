@@ -4,92 +4,191 @@
 <head>
 <meta charset="UTF-8">
 <title>Sign Up</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Ubuntu',sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background: linear-gradient(-45deg,#667eea,#764ba2,#6a11cb,#2575fc);
+background-size:400% 400%;
+animation:gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.signup{
+width:850px;
+display:flex;
+border-radius:20px;
+overflow:hidden;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+box-shadow:0 10px 35px rgba(0,0,0,0.35);
+}
+
+.imgs{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
+
+.imgs img{
+width:90%;
+border-radius:10px;
+}
+
+.signup-form{
+flex:1;
+padding:60px;
+color:white;
+}
+
+.signup-form h2{
+margin-bottom:35px;
+font-size:30px;
+font-weight:600;
+}
+
+.signup-form label{
+font-size:14px;
+}
+
+.signup-form input[type=text],
+.signup-form input[type=password]{
+width:100%;
+padding:14px 18px;
+margin:10px 0 22px 0;
+border:none;
+border-radius:30px;
+outline:none;
+font-size:14px;
+background:rgba(255,255,255,0.9);
+transition:0.3s;
+}
+
+.signup-form input:focus{
+box-shadow:0 0 10px rgba(105,92,254,0.7);
+}
+
+.signup-form input[type=submit]{
+width:100%;
+padding:14px;
+background:#695CFE;
+border:none;
+border-radius:30px;
+color:white;
+font-size:15px;
+font-weight:500;
+cursor:pointer;
+transition:0.3s;
+}
+
+.signup-form input[type=submit]:hover{
+background:#574bce;
+transform:scale(1.03);
+}
+
+.signup-form a{
+color:#fff;
+text-decoration:none;
+font-size:14px;
+}
+
+.signup-form a:hover{
+text-decoration:underline;
+}
+
+.msg{
+margin-top:15px;
+}
+
+.success{
+color:#4dff88;
+}
+
+.error{
+color:#ff4d4d;
+}
+
+@media(max-width:900px){
+
+.signup{
+flex-direction:column;
+width:90%;
+}
+
+.imgs{
+display:none;
+}
+
+}
+
+</style>
 </head>
 
-<body class="min-h-screen flex items-center justify-center font-sans
-bg-gradient-to-r from-indigo-500 via-purple-600 to-blue-500">
+<body>
 
-<div class="backdrop-blur-xl bg-white/20 border border-white/30 
-shadow-2xl rounded-3xl flex flex-col md:flex-row 
-w-full max-w-4xl overflow-hidden">
+<div class="signup">
 
-<!-- Left Image -->
-<div class="md:w-1/2 hidden md:flex items-center justify-center p-6">
-
-<img src="{% static 'assets/welcome.webp' %}" 
-alt="Welcome"
-class="w-3/4 object-cover rounded-3xl shadow-2xl border border-white/40
-transition duration-700 hover:scale-110 hover:rotate-1">
-
+<div class="imgs">
+<img src="{% static 'assets/welcome.webp' %}" alt="Welcome">
 </div>
 
+<div class="signup-form">
 
-<!-- Form Section -->
-<div class="md:w-1/2 p-10 flex flex-col justify-center text-white">
+<h2>Create Account</h2>
 
-<h2 class="text-3xl font-bold mb-8 text-center">Create Account</h2>
-
-<form method="post" class="space-y-5">
-
+<form method="post">
 {% csrf_token %}
 
-<div>
-<label class="block text-sm mb-1">User ID</label>
-<input type="text" name="id" required
-class="w-full px-4 py-3 rounded-full bg-white/80 text-gray-800
-focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
-</div>
+<label>User ID</label>
+<input type="text" name="id" placeholder="Enter User ID" required>
 
-<div>
-<label class="block text-sm mb-1">Password</label>
-<input type="password" name="password" required
-class="w-full px-4 py-3 rounded-full bg-white/80 text-gray-800
-focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
-</div>
+<label>Password</label>
+<input type="password" name="password" placeholder="Enter Password" required>
 
-<div>
-<label class="block text-sm mb-1">Confirm Password</label>
-<input type="password" name="cnfpass" required
-class="w-full px-4 py-3 rounded-full bg-white/80 text-gray-800
-focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
-</div>
+<label>Confirm Password</label>
+<input type="password" name="cnfpass" placeholder="Confirm Password" required>
 
-<div class="pt-2 flex justify-center">
+<input type="submit" value="Sign Up">
 
-<button type="submit"
-class="px-8 py-3 rounded-full
-bg-gradient-to-r from-purple-600 to-pink-500
-hover:scale-105 transition
-shadow-lg text-white font-semibold">
+<br><br>
 
-Sign Up
+<a href="{% url 'login_user' %}">Already have an account? Login</a>
 
-</button>
-
+<div class="msg">
+{% for msg in messages %}
+    {% if msg == "Registered Successfully" %}
+        <div class="success">
+            {{ msg }} -
+            <a href="{% url 'login' %}">Login Now</a>
+        </div>
+    {% else %}
+        <div class="error">{{ msg }}</div>
+    {% endif %}
+{% endfor %}
 </div>
 
 </form>
-
-{% if messages %}
-<div class="mt-6 space-y-2 text-center">
-{% for msg in messages %}
-{% if msg == "Registered Successfully" %}
-<div class="text-green-300 font-medium">
-{{ msg }} -
-<a href="{% url 'login' %}" class="underline">Login Now</a>
-</div>
-{% else %}
-<div class="text-red-300 font-medium">{{ msg }}</div>
-{% endif %}
-{% endfor %}
-</div>
-{% endif %}
-
-<p class="mt-6 text-center text-sm text-white/80">
-Already have an account?
-<a href="{% url 'login_user' %}" class="underline">Login here</a>
-</p>
 
 </div>
 

@@ -2,58 +2,182 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="home p-8">
 
-    <h1 class="text-3xl font-bold text-purple-700 mb-8"
-        style="font-family: 'Times New Roman', Times, serif;">
-        📋 Your Assigned Works
-    </h1>
+<style>
 
-    <div class="grid md:grid-cols-2 gap-6">
+/* RESET EVERYTHING */
+html, body {
+margin: 0;
+padding: 0;
+height: auto;
+background: linear-gradient(135deg,#0f172a,#1e1b4b);
+font-family: 'Poppins', sans-serif;
+}
 
-        {% for info in works %}
-        <div class="bg-white rounded-xl shadow-lg p-6 
-                    transform transition duration-300 
-                    hover:scale-105 hover:shadow-2xl">
+/* MAIN SECTION */
+.home{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+padding:30px 20px;
+margin:0;
+}
 
-            <h2 class="text-lg font-semibold text-purple-800 mb-3">
-                Assigned to: {{ info.taskerId }}
-            </h2>
+/* CONTAINER */
+.work-container{
+width:100%;
+max-width:1200px;
+margin:0 auto;
+}
 
-            <p class="text-gray-600 mb-1">
-                <span class="font-semibold">Assign Date:</span> {{ info.assignDate }}
-            </p>
+/* TITLE */
+.page-title{
+font-size:28px;
+font-weight:700;
+margin-bottom:25px;
+color:#6fe919;
+}
 
-            <p class="text-gray-600 mb-4">
-                <span class="font-semibold">Due Date:</span> {{ info.dueDate }}
-            </p>
+/* GRID */
+.work-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
 
-            <div class="flex gap-3">
+/* CARD */
+.work-card{
+background:#1e293b;
+padding:20px;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+border:1px solid rgba(255,255,255,0.05);
+transition:0.3s;
+}
 
-                <a href="{% url 'workdetails' wid=info.id %}"
-                   class="px-4 py-2 bg-purple-600 text-white rounded-lg 
-                          hover:bg-purple-700 transition">
-                    View
-                </a>
+.work-card:hover{
+transform:translateY(-5px);
+box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
 
-                <a href="{% url 'updatework' wid=info.id %}"
-                   class="px-4 py-2 border border-purple-600 text-purple-600 
-                          rounded-lg hover:bg-purple-600 hover:text-white transition">
-                    Edit
-                </a>
+/* TEXT */
+.label{
+color:#facc15;
+font-size:13px;
+}
 
-                <a href="{% url 'deletework' wid=info.id %}"
-                   class="px-4 py-2 bg-red-500 text-white rounded-lg 
-                          hover:bg-red-600 transition">
-                    Delete
-                </a>
+.value{
+color:#cbd5f5;
+font-size:14px;
+margin-bottom:8px;
+}
 
-            </div>
+/* BUTTONS */
+.btn-group{
+margin-top:10px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
 
-        </div>
-        {% endfor %}
+.btn{
+padding:8px 14px;
+border-radius:8px;
+font-size:13px;
+text-decoration:none;
+transition:0.3s;
+}
 
-    </div>
+/* VIEW */
+.btn-view{
+background:#9b43ed;
+color:white;
+}
+
+.btn-view:hover{
+background:#7e22ce;
+}
+
+/* EDIT */
+.btn-edit{
+border:1px solid #9b43ed;
+color:#9b43ed;
+}
+
+.btn-edit:hover{
+background:#9b43ed;
+color:white;
+}
+
+/* DELETE */
+.btn-delete{
+background:#ef4444;
+color:white;
+}
+
+.btn-delete:hover{
+background:#dc2626;
+}
+
+/* REMOVE EXTRA SPACE FORCEFULLY */
+section{
+margin-bottom:0 !important;
+padding-bottom:0 !important;
+}
+
+</style>
+
+<section class="home">
+
+<div class="work-container">
+
+<div class="page-title">
+📋 Your Assigned Works
+</div>
+
+<div class="work-grid">
+
+{% for info in works %}
+
+<div class="work-card">
+
+<p class="label">Assigned To</p>
+<p class="value">{{ info.taskerId }}</p>
+
+<p class="label">Assign Date</p>
+<p class="value">{{ info.assignDate }}</p>
+
+<p class="label">Due Date</p>
+<p class="value">{{ info.dueDate }}</p>
+
+<div class="btn-group">
+
+<a href="{% url 'workdetails' wid=info.id %}" class="btn btn-view">
+View
+</a>
+
+<a href="{% url 'updatework' wid=info.id %}" class="btn btn-edit">
+Edit
+</a>
+
+<a href="{% url 'deletework' wid=info.id %}" class="btn btn-delete">
+Delete
+</a>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<p style="color:#cbd5f5;">No assigned work found.</p>
+
+{% endfor %}
+
+</div>
+
+</div>
 
 </section>
+
 {% endblock %}

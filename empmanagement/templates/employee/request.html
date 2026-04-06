@@ -1,72 +1,199 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="home p-6 bg-gray-100 min-h-screen">
 
-    <div class="text-center mb-6">
-        <h1 class="text-2xl md:text-3xl font-bold text-purple-700"
-            style="font-family: 'Times New Roman', Times, serif;">
-            📝 Make Request
-        </h1>
-    </div>
+<style>
 
-    <div class="max-w-3xl mx-auto">
-        <div class="bg-white rounded-lg shadow-md p-6 overflow-x-auto">
+body{
+background:linear-gradient(135deg,#0f172a,#1e1b4b);
+font-family:'Poppins',sans-serif;
+}
 
-            <div class="flex justify-between items-center mb-4">
-                <div class="text-lg font-semibold text-gray-900">Enter Details Here</div>
-                <a href="/ems/viewRequest">
-                    <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-300 shadow-sm">
-                        View Your Requests
-                    </button>
-                </a>
-            </div>
+/* Section */
 
-            <form method="post" class="space-y-4">
-                {% csrf_token %}
+.home{
+padding:40px;
+color:#ffffff;
+}
 
-                <!-- Request to Employee ID -->
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gray-50 hover:bg-gray-100 p-3 rounded transition duration-200">
-                    <span class="font-medium text-gray-800 w-full sm:w-1/3">Request to Employee ID</span>
-                    <div class="w-full sm:w-2/3">
-                        <div hidden>{{ requestForm.requesterId }}</div>
-                        {{ requestForm.destinationEmployeeId }}
-                    </div>
-                </div>
+/* Title */
 
-                <!-- Request Message -->
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gray-50 hover:bg-gray-100 p-3 rounded transition duration-200">
-                    <span class="font-medium text-gray-800 w-full sm:w-1/3">Write Request Message</span>
-                    <div class="w-full sm:w-2/3">
-                        {{ requestForm.requestMessage }}
-                    </div>
-                </div>
+.page-title{
+font-size:30px;
+font-weight:700;
+margin-bottom:20px;
+color:#6fe919;
+font-family:'Times New Roman', Times, serif;
+}
 
-                <!-- Request Date -->
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gray-50 hover:bg-gray-100 p-3 rounded transition duration-200">
-                    <span class="font-medium text-gray-800 w-full sm:w-1/3">Select Request Date</span>
-                    <div class="w-full sm:w-2/3">
-                        {{ requestForm.requestDate }}
-                    </div>
-                </div>
+/* Card */
 
-                <!-- Submit Button -->
-                <div class="flex justify-end">
-                    <button type="submit"
-                        class="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-300 shadow-sm">
-                        Submit
-                    </button>
-                </div>
+.request-card{
+max-width:900px;
+background:#1e293b;
+padding:30px;
+border-radius:18px;
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+border:1px solid rgba(255,255,255,0.05);
+margin-top:10px;
+}
 
-            </form>
-        </div>
-    </div>
+/* Header Row */
 
-    {% if flag != "" %}
-    <script>
-        alert('{{ flag }}');
-    </script>
-    {% endif %}
+.card-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+flex-wrap:wrap;
+gap:10px;
+}
+
+/* Header Text */
+
+.card-header h3{
+color:#facc15;
+font-size:18px;
+}
+
+/* View Button */
+
+.view-btn{
+padding:8px 16px;
+background:#9b43ed;
+color:#fff;
+border-radius:8px;
+text-decoration:none;
+font-size:13px;
+transition:0.3s;
+}
+
+.view-btn:hover{
+background:#7e22ce;
+}
+
+/* Form Rows */
+
+.form-row{
+display:flex;
+flex-direction:column;
+margin-bottom:15px;
+}
+
+/* Labels */
+
+.form-row span{
+color:#facc15;
+font-size:14px;
+margin-bottom:5px;
+}
+
+/* Inputs */
+
+.request-card input,
+.request-card select,
+.request-card textarea{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+outline:none;
+background:#0f172a;
+color:#fff;
+font-size:14px;
+}
+
+/* Focus */
+
+.request-card input:focus,
+.request-card select:focus,
+.request-card textarea:focus{
+box-shadow:0 0 10px rgba(250,204,21,0.6);
+}
+
+/* Submit Button */
+
+.submit-btn{
+margin-top:10px;
+padding:12px 20px;
+background:#9b43ed;
+border:none;
+border-radius:10px;
+color:white;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.submit-btn:hover{
+background:#7e22ce;
+transform:translateY(-2px);
+}
+
+/* Success */
+
+.success-msg{
+margin-top:10px;
+color:#4dff88;
+font-weight:600;
+}
+
+</style>
+
+<section class="home">
+
+<div class="page-title">
+📝 Make Request
+</div>
+
+<div class="request-card">
+
+<div class="card-header">
+<h3>Enter Details Here</h3>
+
+<a href="/ems/viewRequest" class="view-btn">
+View Your Requests
+</a>
+</div>
+
+<form method="post">
+{% csrf_token %}
+
+<div hidden>{{ requestForm.requesterId }}</div>
+
+<!-- Employee -->
+<div class="form-row">
+<span>Request to Employee ID</span>
+{{ requestForm.destinationEmployeeId }}
+</div>
+
+<!-- Message -->
+<div class="form-row">
+<span>Write Request Message</span>
+{{ requestForm.requestMessage }}
+</div>
+
+<!-- Date -->
+<div class="form-row">
+<span>Select Request Date</span>
+{{ requestForm.requestDate }}
+</div>
+
+<button type="submit" class="submit-btn">
+Submit
+</button>
+
+</form>
+
+{% if flag != "" %}
+<div class="success-msg">
+{{ flag }}
+</div>
+{% endif %}
+
+</div>
 
 </section>
+
 {% endblock %}

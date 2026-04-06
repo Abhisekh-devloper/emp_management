@@ -1,56 +1,161 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="p-10">
 
-    <!-- Page Title -->
-    
-    <!-- Card -->
-    <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 
-                transition duration-300 hover:shadow-2xl hover:scale-105">
+<style>
 
-        <!-- Title -->
-        <div class="mb-6 border-b pb-4">
-            <h2 class="text-lg font-semibold text-gray-500">Title</h2>
-            <p class="text-xl font-bold text-purple-700 mt-2">
-                {{ noticedetail.title }}
-            </p>
-        </div>
+body{
+background:linear-gradient(135deg,#0f172a,#1e1b4b);
+font-family:'Poppins',sans-serif;
+}
 
-        <!-- Description -->
-        <div class="mb-6 border-b pb-4">
-            <h2 class="text-lg font-semibold text-gray-500">Description</h2>
-            <p class="text-gray-700 mt-2 leading-relaxed">
-                {{ noticedetail.description }}
-            </p>
-        </div>
+/* Section */
 
-        <!-- Publish Date -->
-        <div class="mb-6">
-            <h2 class="text-lg font-semibold text-gray-500">Publish Date</h2>
-            <p class="text-gray-700 mt-2">
-                {{ noticedetail.publishDate }}
-            </p>
-        </div>
+.home{
+padding:40px;
+color:#ffffff;
+}
 
-        <!-- Buttons -->
-        <div class="flex gap-4 mt-8">
+/* Card */
 
-            <a href="{% url 'notice' %}"
-               class="px-5 py-2 bg-purple-600 text-white rounded-lg 
-                      hover:bg-purple-700 transition duration-300">
-                ⬅ Back
-            </a>
+.notice-detail-card{
+max-width:800px;
+margin-top:10px;
+background:#1e293b;
+padding:30px;
+border-radius:18px;
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+border:1px solid rgba(255,255,255,0.05);
+}
 
-            <a href="#"
-               class="px-5 py-2 border border-purple-600 text-purple-600 
-                      rounded-lg hover:bg-purple-600 hover:text-white transition duration-300">
-                Print
-            </a>
+/* Section Titles */
 
-        </div>
+.section-title{
+font-size:14px;
+color:#facc15;   /* yellow */
+font-weight:500;
+margin-bottom:5px;
+}
 
+/* Main Text */
+
+.main-text{
+font-size:20px;
+font-weight:600;
+color:#ffffff;
+margin-bottom:15px;
+}
+
+/* Description */
+
+.desc-text{
+color:#cbd5f5;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+/* Date */
+
+.date-text{
+color:#94a3b8;
+margin-bottom:20px;
+}
+
+/* Divider */
+
+.divider{
+border-bottom:1px solid rgba(255,255,255,0.05);
+margin-bottom:20px;
+padding-bottom:15px;
+}
+
+/* Buttons */
+
+.btn{
+padding:10px 18px;
+border-radius:10px;
+text-decoration:none;
+font-size:14px;
+transition:0.3s;
+display:inline-block;
+}
+
+/* Back Button */
+
+.btn-back{
+background:#9b43ed;
+color:white;
+}
+
+.btn-back:hover{
+background:#7e22ce;
+}
+
+/* Print Button */
+
+.btn-print{
+border:1px solid #9b43ed;
+color:#9b43ed;
+}
+
+.btn-print:hover{
+background:#9b43ed;
+color:white;
+}
+
+/* Button Container */
+
+.btn-group{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+</style>
+
+<section class="home">
+
+<div class="notice-detail-card">
+
+<!-- Title -->
+<div class="divider">
+    <div class="section-title">Title</div>
+    <div class="main-text">
+        {{ noticedetail.title }}
     </div>
+</div>
+
+<!-- Description -->
+<div class="divider">
+    <div class="section-title">Description</div>
+    <div class="desc-text">
+        {{ noticedetail.description }}
+    </div>
+</div>
+
+<!-- Date -->
+<div>
+    <div class="section-title">Publish Date</div>
+    <div class="date-text">
+        {{ noticedetail.publishDate }}
+    </div>
+</div>
+
+<!-- Buttons -->
+<div class="btn-group">
+
+<a href="{% url 'notice' %}" class="btn btn-back">
+⬅ Back
+</a>
+
+<a href="#" onclick="window.print()" class="btn btn-print">
+🖨 Print
+</a>
+
+</div>
+
+</div>
 
 </section>
+
 {% endblock %}

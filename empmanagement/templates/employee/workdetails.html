@@ -1,56 +1,151 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="home p-6 bg-gray-100 min-h-screen">
 
-    <div class="text-center mb-6">
-        <h1 class="text-2xl md:text-3xl font-bold text-purple-700">
-            📌 Work Details
-        </h1>
-    </div>
+<style>
 
-    <div class="max-w-3xl mx-auto">
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+/* RESET */
+html, body{
+margin:0;
+padding:0;
+background:linear-gradient(135deg,#0f172a,#1e1b4b);
+font-family:'Poppins',sans-serif;
+}
 
-            <table class="min-w-full">
-                <thead class="bg-purple-100">
-                    <tr>
-                        <th class="text-left text-gray-900 px-6 py-3 text-lg font-semibold">Notice Info</th>
-                        <th class="text-left text-gray-900 px-6 py-3"></th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
+/* SECTION */
+.home{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+padding:30px 20px;
+}
 
-                    <tr class="hover:bg-purple-50 transition duration-200">
-                        <td class="px-6 py-4 font-medium text-gray-800">Assigned By</td>
-                        <td class="px-6 py-4 text-gray-700">{{ workdetails.assignerId }}</td>
-                    </tr>
+/* CONTAINER */
+.detail-container{
+width:100%;
+max-width:900px;
+}
 
-                    <tr class="hover:bg-purple-50 transition duration-200">
-                        <td class="px-6 py-4 font-medium text-gray-800">Assigned To</td>
-                        <td class="px-6 py-4 text-gray-700">{{ workdetails.taskerId }}</td>
-                    </tr>
+/* TITLE */
+.page-title{
+text-align:center;
+font-size:28px;
+font-weight:700;
+margin-bottom:20px;
+color:#6fe919;
+}
 
-                    <tr class="hover:bg-purple-50 transition duration-200">
-                        <td class="px-6 py-4 font-medium text-gray-800">Work Description</td>
-                        <td class="px-6 py-4 text-gray-700">{{ workdetails.work }}</td>
-                    </tr>
+/* CARD */
+.detail-card{
+background:#1e293b;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+border:1px solid rgba(255,255,255,0.05);
+overflow:hidden;
+}
 
-                    <tr class="hover:bg-purple-50 transition duration-200">
-                        <td class="px-6 py-4 font-medium text-gray-800">Assigned Date</td>
-                        <td class="px-6 py-4 text-gray-700">{{ workdetails.assignDate }}</td>
-                    </tr>
+/* TABLE */
+.detail-table{
+width:100%;
+border-collapse:collapse;
+}
 
-                    <tr class="hover:bg-purple-50 transition duration-200">
-                        <td class="px-6 py-4 font-medium text-gray-800">Due Date</td>
-                        <td class="px-6 py-4 text-gray-700">{{ workdetails.dueDate }}</td>
-                    </tr>
+/* HEADER */
+.detail-table thead{
+background:#020617;
+}
 
-                </tbody>
-            </table>
+.detail-table th{
+text-align:left;
+padding:14px;
+color:#facc15;
+font-size:15px;
+}
 
-        </div>
-    </div>
+/* ROW */
+.detail-table td{
+padding:14px;
+border-top:1px solid rgba(255,255,255,0.05);
+}
+
+/* LABEL */
+.label{
+color:#facc15;
+font-weight:500;
+}
+
+/* VALUE */
+.value{
+color:#cbd5f5;
+}
+
+/* HOVER */
+.detail-table tr:hover{
+background:rgba(255,255,255,0.03);
+}
+
+/* REMOVE GAP */
+section{
+margin-bottom:0 !important;
+padding-bottom:0 !important;
+}
+
+</style>
+
+<section class="home">
+
+<div class="detail-container">
+
+<div class="page-title">
+📌 Work Details
+</div>
+
+<div class="detail-card">
+
+<table class="detail-table">
+
+<thead>
+<tr>
+<th>Work Info</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td class="label">Assigned By</td>
+<td class="value">{{ workdetails.assignerId }}</td>
+</tr>
+
+<tr>
+<td class="label">Assigned To</td>
+<td class="value">{{ workdetails.taskerId }}</td>
+</tr>
+
+<tr>
+<td class="label">Work Description</td>
+<td class="value">{{ workdetails.work }}</td>
+</tr>
+
+<tr>
+<td class="label">Assigned Date</td>
+<td class="value">{{ workdetails.assignDate }}</td>
+</tr>
+
+<tr>
+<td class="label">Due Date</td>
+<td class="value">{{ workdetails.dueDate }}</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
 
 </section>
+
 {% endblock %}
